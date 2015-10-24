@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ ! -z $SSH_AUTH_SOCK ]] ; then 
+    ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
+    tmux set-environment SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
+    tmux set-environment -g SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
+fi

@@ -48,6 +48,7 @@ map <Leader>tn :tabnext<cr>
 map <Leader>tp :tabprevious<cr> 
 map <C-Tab> <C-w>
 map <Leader>c  :noh<cr>
+noh
 
 " nnoremap <C-l> :noh<cr>
 
@@ -62,7 +63,11 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-
+Plugin 'L9'
+Plugin 'fuzzyfinder'
 
 call vundle#end() 
 filetype plugin indent on
+
+map <F1> :NERDTree<cr>
+nmap <F3> :FufFileWithFullCwd<cr>

@@ -7,8 +7,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
-set cindent
-set cino=L,:0,b1,t0,(s,U1,m1
+"set cindent
+"set cino=L,:0,b1,t0,(s,U1,m1
 set smartindent
 
 set nowrap
@@ -27,6 +27,11 @@ set hls
 
 set splitbelow
 set splitright
+
+set statusline=\[%n\]\ \%<%f\ %h%m%r\ %y%=%{v:register}\ %-14.(%l,%c%V%)\ %P
+
+set undofile
+set undodir=~/.vimundo
 
 "enable 256 colors schemes
 if has('unix')
@@ -69,5 +74,16 @@ Plugin 'fuzzyfinder'
 call vundle#end() 
 filetype plugin indent on
 
+func Cscope_load()
+    !cscope -b -R -q
+    cs reset
+endfunc
+
 map <F1> :NERDTree<cr>
 nmap <F3> :FufFileWithFullCwd<cr>
+
+nmap <F12> :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <F11> :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-F9> :call Cscope_load()<cr><cr>
+
+

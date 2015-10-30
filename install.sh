@@ -1,5 +1,8 @@
 #!/bin/bash
 
+git submodule init
+git submodule update
+
 mkdir ~/.backup
 [[ -f ~/.vimrc ]] && mv ~/.vimrc ~/.backup/.vimrc
 [[ -d ~/.vim ]] &&  mv ~/.vim ~/.backup/.vim

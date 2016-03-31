@@ -70,6 +70,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'L9'
 Plugin 'fuzzyfinder'
+Plugin 'davidhalter/jedi-vim'
 
 call vundle#end() 
 filetype plugin indent on

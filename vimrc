@@ -71,6 +71,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'L9'
 Plugin 'fuzzyfinder'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'justinmk/vim-syntax-extra'
 
 call vundle#end() 
 filetype plugin indent on

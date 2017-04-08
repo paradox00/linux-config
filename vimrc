@@ -10,6 +10,7 @@ set autoindent
 "set cindent
 "set cino=L,:0,b1,t0,(s,U1,m1
 set smartindent
+set cino=(0
 
 set nowrap
 set showcmd
@@ -39,6 +40,8 @@ if has('unix')
 endif
 
 colorscheme desert
+highlight PmenuSel ctermfg=1 ctermbg=4
+highlight Pmenu ctermfg=7 ctermbg=4
 
 " Python configs
 filetype indent plugin on
@@ -53,6 +56,7 @@ map <Leader>tn :tabnext<cr>
 map <Leader>tp :tabprevious<cr> 
 map <C-Tab> <C-w>
 map <Leader>c  :noh<cr>
+set pastetoggle=<F2>
 noh
 
 " nnoremap <C-l> :noh<cr>
@@ -71,6 +75,10 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'L9'
 Plugin 'fuzzyfinder'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-utils/vim-man'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'rdnetto/YCM-Generator'
 
 call vundle#end() 
 filetype plugin indent on
@@ -87,4 +95,47 @@ nmap <F12> :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <F11> :vert scs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-F9> :call Cscope_load()<cr><cr>
 
+filetype plugin indent on
+
+func! Cscope_load()
+    !cscope-indexer -r .
+    cs reset
+endfunc
+
+map <F8> :NERDTreeToggle<cr>
+nmap <F9> :FufFile<cr>
+
+nmap <F12> :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <F11> :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <F10> :call Cscope_load()<cr><cr>
+
+" To do the first type of search, hit 'CTRL-\', followed by one of the
+" cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
+" search will be displayed in the current window.  You can use CTRL-T to
+" go back to where you were before the search.
+"
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+
+" Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
+" makes the vim window split vertically, with search result displayed in
+" the new window.
+nmap <C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@>i :vert scs find i <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+
+" Jedi options
+let g:jedi#use_splits_not_buffers = "right"
 

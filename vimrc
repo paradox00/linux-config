@@ -80,6 +80,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-utils/vim-man'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'rdnetto/YCM-Generator'
+Plugin 'ericpruitt/tmux.vim'
 
 call vundle#end() 
 filetype plugin indent on

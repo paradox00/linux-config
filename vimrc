@@ -81,6 +81,7 @@ Plugin 'vim-utils/vim-man'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'ericpruitt/tmux.vim'
+Plugin 'tmux-plugins/vim-tmux'
 
 call vundle#end() 
 filetype plugin indent on

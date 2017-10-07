@@ -37,3 +37,6 @@
 [submodule "vim/bundle/vim-syntax-extra"]
 	path = vim/bundle/vim-syntax-extra
 	url = https://github.com/justinmk/vim-syntax-extra.git
+[submodule "bash/bash-git-prompt"]
+	path = bash/bash-git-prompt
+	url = https://github.com/magicmonty/bash-git-prompt.git

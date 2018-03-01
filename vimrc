@@ -34,6 +34,9 @@ set statusline=\[%n\]\ \%<%f\ %h%m%r\ %y%=%{v:register}\ %-14.(%l,%c%V%)\ %P
 set undofile
 set undodir=~/.vimundo
 
+" always show status line
+set laststatus=2
+
 "enable 256 colors schemes
 if has('unix')
 	set t_Co=256

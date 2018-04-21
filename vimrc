@@ -158,4 +158,7 @@ nmap <C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 " Jedi options
 let g:jedi#use_splits_not_buffers = "right"
 
+" enable nginx filetype
+au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
+
 "source /home/aviv/ScaleIO_SDT/scripts/devenv/vimrc

@@ -9,6 +9,8 @@ set expandtab
 set autoindent
 "set cindent
 "set cino=L,:0,b1,t0,(s,U1,m1
+" indention options
+set cino=(0
 set smartindent
 set cino=(0
 
@@ -34,6 +36,14 @@ set statusline=\[%n\]\ \%<%f\ %h%m%r\ %y%=%{v:register}\ %-14.(%l,%c%V%)\ %P
 set undofile
 set undodir=~/.vimundo
 
+" always show status line
+set laststatus=2
+
+set fileformats=unix,dos "hide ^M in files with inconsistent EOL
+
+"enable current dir .vimrc
+set exrc 
+
 "enable 256 colors schemes
 if has('unix')
 	set t_Co=256
@@ -47,7 +57,7 @@ highlight Pmenu ctermfg=7 ctermbg=4
 filetype indent plugin on
 set modeline
 
-command W w !sudo tee % > /dev/null
+command! W w !sudo tee % > /dev/null
 
 map <Leader>tt :tabnew<cr>
 map <Leader>tc :tabclose<cr>
@@ -68,7 +78,7 @@ call vundle#begin()
 " call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -82,21 +92,29 @@ Plugin 'vim-utils/vim-man'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'ericpruitt/tmux.vim'
 Plugin 'tmux-plugins/vim-tmux'
+Plugin 'nginx.vim'
 
 call vundle#end() 
-filetype plugin indent on
 
-func Cscope_load()
-    !cscope -b -R -q
-    cs reset
-endfunc
 
-map <F1> :NERDTree<cr>
-nmap <F3> :FufFileWithFullCwd<cr>
+if has("autocmd")
+  autocmd FileType c setlocal cindent expandtab sw=4 ts=4
+  autocmd FileType cpp setlocal cindent expandtab sw=4 ts=4
+  autocmd FileType sh setlocal expandtab sw=4
 
-nmap <F12> :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <F11> :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-F9> :call Cscope_load()<cr><cr>
+  au BufRead,BufNewFile trc.* setfiletype siotrace
+  au FileType siotrace highlight Timestamp guibg=Blue
+  au FileType siotrace syn match Timestamp "^\d\{2}/\d\{2} \d\{2}:\d\{2}:\d\{2}.\d\{6}"
+  au FileType siotrace highlight ProcessStart guibg=Green guifg=Black
+  au FileType siotrace syn match ProcessStart " ---------- Process started.*"
+  au FileType siotrace highlight EventLog guifg=Green
+  au FileType siotrace syn match EventLog "mosEventLog.*"
+  au FileType siotrace highlight Panic guibg=Red guifg=Yellow
+  au FileType siotrace syn match Panic "Panic .*"
+endif
+
+nmap <F5> :make less<cr>:cw<cr>
+
 
 filetype plugin indent on
 
@@ -126,7 +144,6 @@ nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-
 " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
 " makes the vim window split vertically, with search result displayed in
 " the new window.
@@ -142,3 +159,7 @@ nmap <C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 " Jedi options
 let g:jedi#use_splits_not_buffers = "right"
 
+" enable nginx filetype
+au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
+
+"source /home/aviv/ScaleIO_SDT/scripts/devenv/vimrc

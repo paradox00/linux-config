@@ -78,7 +78,7 @@ call vundle#begin()
 " call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -91,6 +91,7 @@ Plugin 'vim-utils/vim-man'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'ericpruitt/tmux.vim'
+Plugin 'nginx.vim'
 
 call vundle#end() 
 

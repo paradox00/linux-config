@@ -93,6 +93,7 @@ Plugin 'vim-utils/vim-man'
 Plugin 'ericpruitt/tmux.vim'
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'nginx.vim'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end() 
 
@@ -163,3 +164,10 @@ let g:jedi#use_splits_not_buffers = "right"
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
 
 "source /home/aviv/ScaleIO_SDT/scripts/devenv/vimrc
+
+" Enable ag command
+if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+endif
+cnoreabbrev ag Ack
+

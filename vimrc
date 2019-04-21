@@ -12,7 +12,6 @@ set autoindent
 " indention options
 set cino=(0
 set smartindent
-set cino=(0
 
 set nowrap
 set showcmd

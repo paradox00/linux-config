@@ -87,7 +87,6 @@ Plugin 'fuzzyfinder'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'tpope/vim-fugitive'
-"Plugin 'vim-utils/vim-man'
 Plugin 'will133/vim-dirdiff'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'rdnetto/YCM-Generator'
@@ -126,7 +125,8 @@ if has("autocmd")
   au FileType siotrace syn match Panic "Panic .*"
 endif
 
-nmap <F5> :make less<cr>:cw<cr>
+" enable nginx filetype
+au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
 
 
 filetype plugin indent on
@@ -136,12 +136,13 @@ func! Cscope_load()
     cs reset
 endfunc
 
-map <F8> :NERDTreeToggle<cr>
-nmap <F9> :FufFile<cr>
 
-nmap <F12> :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <F11> :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <F10> :call Cscope_load()<cr><cr>
+map <F5> :make less<cr>:cw<cr>
+map <F8> :NERDTreeToggle<cr>
+map <F9> :FufFile<cr>
+map <F10> :call Cscope_load()<cr><cr>
+map <F11> :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+map <F12> :cs find s <C-R>=expand("<cword>")<CR><CR>
 
 " To do the first type of search, hit 'CTRL-\', followed by one of the
 " cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
@@ -171,11 +172,6 @@ nmap <C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
 " Jedi options
 let g:jedi#use_splits_not_buffers = "right"
-
-" enable nginx filetype
-au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
-
-"source /home/aviv/ScaleIO_SDT/scripts/devenv/vimrc
 
 " Enable ag command
 if executable('ag')

@@ -66,7 +66,7 @@ map <Leader>tn :tabnext<cr>
 map <Leader>tp :tabprevious<cr> 
 map <C-Tab> <C-w>
 map <Leader>c  :noh<cr>
-set pastetoggle=<F2>
+set pastetoggle=<Leader>p
 noh
 
 " nnoremap <C-l> :noh<cr>
@@ -95,6 +95,9 @@ Plugin 'ericpruitt/tmux.vim'
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'nginx.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'godlygeek/tabular'
+"Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'vim-commentary' " provides gcc, gc command to comment toggle 
 
 call vundle#end() 
 
@@ -176,10 +179,17 @@ au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfil
 
 " Enable ag command
 if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag --vimgrep --smart-case'
 endif
 cnoreabbrev ag Ack
 
+" http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+"if exists(":Tabularize")
+	nmap <Leader>a= :Tabularize /=<CR>
+	vmap <Leader>a= :Tabularize /=<CR>
+	nmap <Leader>a: :Tabularize /:\zs<CR>
+	vmap <Leader>a: :Tabularize /:\zs<CR>
+"endif
 
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX

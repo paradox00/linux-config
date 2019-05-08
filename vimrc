@@ -180,3 +180,17 @@ if executable('ag')
 endif
 cnoreabbrev ag Ack
 
+
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set filetype=%s  ts=%d sw=%d tw=%d %set :",
+        \ &filetype,
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+" vim: set filetype=vim  ts=4 sw=4 tw=78 et :

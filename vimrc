@@ -123,11 +123,10 @@ if has("autocmd")
   au FileType siotrace syn match EventLog "mosEventLog.*"
   au FileType siotrace highlight Panic guibg=Red guifg=Yellow
   au FileType siotrace syn match Panic "Panic .*"
+
+  " enable nginx filetype
+  au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
 endif
-
-" enable nginx filetype
-au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
-
 
 filetype plugin indent on
 

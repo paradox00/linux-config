@@ -22,3 +22,7 @@ ln -s ${GIT_ROOT}/bash.conf ~/.bash.conf
 ln -s ${GIT_ROOT}/bash ~/.bash_addons
 
 echo "source ~/.bash.conf" >> ~/.bashrc
+
+# Git
+echo "[include]" >> ~/.gitconfig
+echo "path = ${GIT_ROOT}/gitconfig" >> ~/.gitconfig

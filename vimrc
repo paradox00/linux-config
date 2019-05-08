@@ -98,6 +98,11 @@ Plugin 'godlygeek/tabular'
 "Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tpope/vim-commentary' " provides gcc, gc command to comment toggle 
 
+" snipmate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
 call vundle#end() 
 
 "enable man plugin

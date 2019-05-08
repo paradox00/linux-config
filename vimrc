@@ -97,7 +97,7 @@ Plugin 'nginx.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'godlygeek/tabular'
 "Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'vim-commentary' " provides gcc, gc command to comment toggle 
+Plugin 'tpope/vim-commentary' " provides gcc, gc command to comment toggle 
 
 call vundle#end() 
 

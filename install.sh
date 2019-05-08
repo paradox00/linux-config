@@ -26,3 +26,7 @@ echo "source ~/.bash.conf" >> ~/.bashrc
 # Git
 echo "[include]" >> ~/.gitconfig
 echo "path = ${GIT_ROOT}/gitconfig" >> ~/.gitconfig
+
+
+# gdb 
+echo "source ${GIT_ROOT}/gdbinit" >> ~/.gdbinit

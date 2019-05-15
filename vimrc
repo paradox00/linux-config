@@ -120,13 +120,13 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.h    setfiletype c
 
   au BufRead,BufNewFile trc.* setfiletype siotrace
-  au FileType siotrace highlight Timestamp guibg=Blue
+  au FileType siotrace highlight Timestamp guibg=Blue ctermfg=Blue
   au FileType siotrace syn match Timestamp "^\d\{2}/\d\{2} \d\{2}:\d\{2}:\d\{2}.\d\{6}"
-  au FileType siotrace highlight ProcessStart guibg=Green guifg=Black
+  au FileType siotrace highlight ProcessStart guibg=Green guifg=Black ctermbg=Green ctermfg=Black
   au FileType siotrace syn match ProcessStart " ---------- Process started.*"
   au FileType siotrace highlight EventLog guifg=Green
   au FileType siotrace syn match EventLog "mosEventLog.*"
-  au FileType siotrace highlight Panic guibg=Red guifg=Yellow
+  au FileType siotrace highlight Panic guibg=Red guifg=Yellow ctermfg=Yellow
   au FileType siotrace syn match Panic "Panic .*"
 
   " enable nginx filetype

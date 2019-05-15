@@ -1,3 +1,5 @@
+set history save on
+set history expansion on
 
 set print pretty on
 set pagination off

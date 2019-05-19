@@ -112,10 +112,8 @@ if has("autocmd")
   autocmd FileType c setlocal cindent expandtab sw=4 ts=4
   autocmd FileType cpp setlocal cindent expandtab sw=4 ts=4
   autocmd FileType sh setlocal expandtab sw=4
-  autocmd FileType c setlocal foldmethod=syntax
-  autocmd FileType c normal zR
-  autocmd FileType cpp setlocal foldmethod=syntax
-  autocmd FileType cpp normal zR
+  autocmd FileType c,cpp setlocal foldmethod=syntax
+  autocmd FileType c,cpp normal zR
 
   autocmd BufNewFile,BufRead *.h    setfiletype c
 

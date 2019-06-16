@@ -1,0 +1,131 @@
+[core]
+    editor = vim
+    abbrev = 12
+    excludesfile = ./.gitignore_global
+
+[push]
+    default = simple
+
+[pull]
+    ff = only
+
+[log]
+    decorate = true
+
+[status]
+    submoduleSummary = true
+
+[alias]
+    # show one log with graph
+    cslog=log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    mycslog=log --author="$(git config --get user.name)" --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+    a     = add
+    # amd   = commit --amend
+    amend = commit --amend
+
+    loghead = log $(git rev-parse --abbrev-ref --symbolic-full-name @{u}) ^HEAD
+
+    st = status
+
+    # ama   = commit --amend -a
+    # amna  = commit --amend --no-edit -a
+    # amupd = commit --amend --no-edit --date=\"$(date -R)\" -a
+    b     = branch -v
+    bd    = branch -D
+    # bl    = fancy-branch-list
+    # bm    = branch -M
+    # bn    = rev-parse --abbrev-ref HEAD
+    br    = branch -v -r
+    # bu    = branch -u
+    # buo   = !sh -c 'git bu origin/$(git bn)'
+    # buom  = !sh -c 'git bu origin/master'
+    # c     = commit
+    # ca    = commit -a
+    # cam   = commit -a -m
+    # chop1 = reset --hard HEAD~1
+    # chop2 = reset --hard HEAD~2
+    # chr   = cherry-pick
+    # cm    = commit -m
+    # co    = checkout
+    # cont  = !git-continue
+    # cp1   = chop1
+    # cp2   = chop2
+    # ctags = !sh -c '~/.files/ctags.sh $@' -
+    # d     = "!git diff"
+    # ec    = "!vim `git rev-parse --git-dir`/config"
+    # f     = fetch
+    # ftl   = !sh -c 'git fixup-to-last $@' -
+    # ful   = !sh -c '~/.files/git-fixup/git-fixup $@' -
+    # g     = "!git grep"
+    # l     = "!git log"
+    # l1    = "!git log -1"
+    # last  = !sh -c 'T=`git tb` && git log ${T}@{1}..${T} $@' -
+    # lc    = !sh -c 'git log `git tb`..HEAD $@' --
+    # lc1   = !sh -c 'git log `git tb`..HEAD --oneline $@' --
+    # lcr   = !sh -c 'git log --reverse `git tb`..HEAD $@' --
+    # lig   = "!git ls-ignored"
+    # n     = next
+    # nc    = "!git anticom"
+    # next  = !sh -c 'T=`git tb` && git log ${T}.. $@' -
+    # oc    = !sh -c 'git commit-orig $@' -
+    # p     = push
+    # r-    = !sh -c 'git reset --hard $@' -
+    # r-h   = reset HEAD
+    # rb    = rebase
+    # rbh   = !sh -c 'git rebase -i HEAD~$1' -
+    # rbt   = !sh -c 'T=`git tb` && git rebase --autosquash $1 ${T} $@' -
+    # rbi   = !sh -c 'T=`git tb` && git rebase --autosquash -i $1 ${T} $@' -
+    # ron   = !sh -c 'git rebase $1 --onto $2' -
+    # arb   = !sh -c 'git absorb $@ && git rbi' -
+    # rt    = remote
+    # s     = status
+    # sh    = "!git show"
+    # sh1   = "!git show HEAD~1 $@"
+    # sh2   = "!git show HEAD~2 $@"
+    # sh3   = "!git show HEAD~3 $@"
+    # sh4   = "!git show HEAD~4 $@"
+    # sh5   = "!git show HEAD~5 $@"
+    # sh6   = "!git show HEAD~6 $@"
+    # sh7   = "!git show HEAD~7 $@"
+    # sh8   = "!git show HEAD~8 $@"
+    # tb    = "!git tracking-branch"
+    # todo  = "!vim `git rev-parse --git-dir`/todo.md"
+
+    # # What refs contains the sha
+    # whatrelease = name-rev --name-only
+    # contains = branch --contains
+
+    # # What is the tracking branch of the current branch
+    # tracking-branch = rev-parse --abbrev-ref --symbolic-full-name @{u}
+
+    # # from https://github.com/cypher/dotfiles/blob/master/gitconfig
+    # ls-ignored = ls-files --exclude-standard --ignored --others
+    # list-untracked  = !sh -c 'git status --porcelain | grep '^??' | cut -c4-' -
+
+    # add-prefix = !sh -c 'T=`git tb` && git tag-commits ${T} --add-prefix $@' -
+    # add-suffix = !sh -c 'T=`git tb` && git tag-commits ${T} --add-suffix $@' -
+    # add-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; git add `f`"
+    # root-conf = !sh -c 'cat ~/.files/gitconfig'
+    # anticom = !sh -c 'git reset --soft HEAD^'
+    # commit-orig = !sh -c 'git commit -C ORIG_HEAD $@' -
+    # diff-fancy = "!git -c color.diff=off -c pager.diff='fancydiff stdin --pager=less' diff $@"
+    # edit-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; eb `f`"
+    # empty-branches = !sh -c 'T=`git tb` && git branch --merged ${T} $@' -
+    # first-not-mine = !sh -c 'git --no-pager log $@ --perl-regexp --author=\"^((?!$(git config user.name)).*)$\" -n 1 --pretty="%H"' -
+    # graph = "!git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+    # log-fancy = "!git -c color.diff=off -c pager.log='fancydiff stdin --pager=less' log $@"
+    # show-fancy = "!git -c color.diff=off -c pager.show='fancydiff stdin --pager=less' show $@"
+
+    # # typos
+    # lgo = "!git log"
+    # gerp = "!git grep"
+    # branc = branch
+    # rebae = rebase
+    # statuus = status
+    # tatus = status
+    # sattus = status
+    # remtoe = remote
+    # dif = "!git diff"
+
+# vim: filetype=gitconfig

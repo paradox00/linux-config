@@ -65,7 +65,7 @@ map <Leader>tn :tabnext<cr>
 map <Leader>tp :tabprevious<cr> 
 map <C-Tab> <C-w>
 map <Leader>c  :noh<cr>
-set pastetoggle=<F2>
+set pastetoggle=<Leader>p
 noh
 
 " nnoremap <C-l> :noh<cr>
@@ -86,35 +86,49 @@ Plugin 'fuzzyfinder'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'tpope/vim-fugitive'
-Plugin 'vim-utils/vim-man'
+Plugin 'will133/vim-dirdiff'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'ericpruitt/tmux.vim'
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'nginx.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'godlygeek/tabular'
+"Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'tpope/vim-commentary' " provides gcc, gc command to comment toggle 
+
+" snipmate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
 
 call vundle#end() 
 
+"enable man plugin
+runtime! ftplugin/man.vim
 
 if has("autocmd")
   autocmd FileType c setlocal cindent expandtab sw=4 ts=4
   autocmd FileType cpp setlocal cindent expandtab sw=4 ts=4
   autocmd FileType sh setlocal expandtab sw=4
+  autocmd FileType c,cpp setlocal foldmethod=syntax
+  autocmd FileType c,cpp normal zR
+
+  autocmd BufNewFile,BufRead *.h    setfiletype c
 
   au BufRead,BufNewFile trc.* setfiletype siotrace
-  au FileType siotrace highlight Timestamp guibg=Blue
+  au FileType siotrace highlight Timestamp guibg=Blue ctermfg=Blue
   au FileType siotrace syn match Timestamp "^\d\{2}/\d\{2} \d\{2}:\d\{2}:\d\{2}.\d\{6}"
-  au FileType siotrace highlight ProcessStart guibg=Green guifg=Black
+  au FileType siotrace highlight ProcessStart guibg=Green guifg=Black ctermbg=Green ctermfg=Black
   au FileType siotrace syn match ProcessStart " ---------- Process started.*"
   au FileType siotrace highlight EventLog guifg=Green
   au FileType siotrace syn match EventLog "mosEventLog.*"
-  au FileType siotrace highlight Panic guibg=Red guifg=Yellow
+  au FileType siotrace highlight Panic guibg=Red guifg=Yellow ctermfg=Yellow
   au FileType siotrace syn match Panic "Panic .*"
+
+  " enable nginx filetype
+  au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
 endif
-
-nmap <F5> :make less<cr>:cw<cr>
-
 
 filetype plugin indent on
 
@@ -123,12 +137,13 @@ func! Cscope_load()
     cs reset
 endfunc
 
-map <F8> :NERDTreeToggle<cr>
-nmap <F9> :FufFile<cr>
 
-nmap <F12> :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <F11> :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <F10> :call Cscope_load()<cr><cr>
+map <F5> :make less<cr>:cw<cr>
+map <F8> :NERDTreeToggle<cr>
+map <F9> :FufFile<cr>
+map <F10> :call Cscope_load()<cr><cr>
+map <F11> :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+map <F12> :cs find s <C-R>=expand("<cword>")<CR><CR>
 
 " To do the first type of search, hit 'CTRL-\', followed by one of the
 " cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
@@ -159,14 +174,30 @@ nmap <C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 " Jedi options
 let g:jedi#use_splits_not_buffers = "right"
 
-" enable nginx filetype
-au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
-
-"source /home/aviv/ScaleIO_SDT/scripts/devenv/vimrc
-
 " Enable ag command
 if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag --vimgrep --smart-case'
 endif
 cnoreabbrev ag Ack
 
+" http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+"if exists(":Tabularize")
+	nmap <Leader>a= :Tabularize /=<CR>
+	vmap <Leader>a= :Tabularize /=<CR>
+	nmap <Leader>a: :Tabularize /:\zs<CR>
+	vmap <Leader>a: :Tabularize /:\zs<CR>
+"endif
+
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set filetype=%s  ts=%d sw=%d tw=%d %set :",
+        \ &filetype,
+        \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+" vim: set filetype=vim  ts=4 sw=4 tw=78 et :

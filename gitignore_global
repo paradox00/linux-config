@@ -1,0 +1,10 @@
+*~
+.DS_Store/
+.idea/
+.env/
+.vscode/
+.dir-locals.el
+
+.*.swp
+
+#  vim: set filetype=conf  ts=4 sw=4 tw=0 et :

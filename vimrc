@@ -42,7 +42,7 @@ set laststatus=2
 set fileformats=unix,dos "hide ^M in files with inconsistent EOL
 
 "enable current dir .vimrc
-set exrc 
+set exrc
 
 "enable 256 colors schemes
 if has('unix')
@@ -202,5 +202,55 @@ function! AppendModeline()
   call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+" linux kernel coding style
+" https://github.com/vivien/vim-linux-coding-style/blob/master/plugin/linuxsty.vim
+command! LinuxCodingStyle call s:LinuxCodingStyle()
+
+function! LinuxCodingStyle()
+    call s:LinuxFormatting()
+    call s:LinuxKeywords()
+    call s:LinuxHighlighting()
+endfunction
+
+function! s:LinuxFormatting()
+    setlocal tabstop=8
+    setlocal shiftwidth=8
+    setlocal softtabstop=8
+    setlocal textwidth=80
+    setlocal noexpandtab
+
+    setlocal cindent
+    setlocal cinoptions=:0,l1,t0,g0,(0
+endfunction
+
+function! s:LinuxKeywords()
+    syn keyword cOperator likely unlikely
+    syn keyword cType u8 u16 u32 u64 s8 s16 s32 s64
+    syn keyword cType __u8 __u16 __u32 __u64 __s8 __s16 __s32 __s64
+endfunction
+
+function! s:LinuxHighlighting()
+    highlight default link LinuxError ErrorMsg
+
+    syn match LinuxError / \+\ze\t/     " spaces before tab
+    syn match LinuxError /\%>80v[^()\{\}\[\]<>]\+/ " virtual column 81 and more
+
+    " Highlight trailing whitespace, unless we're in insert mode and the
+    " cursor's placed right after the whitespace. This prevents us from having
+    " to put up with whitespace being highlighted in the middle of typing
+    " something
+    autocmd InsertEnter * match LinuxError /\s\+\%#\@<!$/
+    autocmd InsertLeave * match LinuxError /\s\+$/
+endfunction
+
+" augroup linuxsty
+" 	autocmd!
+"
+" 	autocmd FileType c,cpp call s:LinuxCodingStyle()
+" 	autocmd FileType diff setlocal ts=8
+" 	autocmd FileType kconfig setlocal ts=8 sw=8 sts=8 noet
+" 	autocmd FileType dts setlocal ts=8 sw=8 sts=8 noet
+" augroup END
 
 " vim: set filetype=vim  ts=4 sw=4 tw=78 et :

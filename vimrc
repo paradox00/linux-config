@@ -2,6 +2,7 @@ syntax on
 set mouse=a
 set number
 set nocompatible
+set bs=2 " enable backspace to move through line ends 
 
 set tabstop=4
 set shiftwidth=4

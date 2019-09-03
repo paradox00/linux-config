@@ -27,3 +27,5 @@ tags
 tags-ja
 
 vim/swap/
+
+tmux/tmux.conf.local

@@ -92,3 +92,7 @@
 	path = vim/bundle/gnuplot.vim
 	url = https://github.com/vim-scripts/gnuplot.vim.git
 	branch = master
+[submodule "tmux/tmux-better-mouse-mode"]
+	path = tmux/plugins/tmux-better-mouse-mode
+	url = https://github.com/nhdaly/tmux-better-mouse-mode
+	branch = master

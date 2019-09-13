@@ -1,7 +1,6 @@
 [core]
     editor = vim
     abbrev = 12
-    excludesfile = ./.gitignore_global
 
 [push]
     default = simple

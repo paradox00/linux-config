@@ -130,6 +130,9 @@ if has("autocmd")
 
   " enable nginx filetype
   au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
+
+  " gnuplot comment
+  autocmd FileType gnuplot setlocal commentstring=#\ %s
 endif
 
 filetype plugin indent on
@@ -140,7 +143,7 @@ func! Cscope_load()
 endfunc
 
 
-map <F5> :make less<cr>:cw<cr>
+map <F5> :make <cr>
 map <F8> :NERDTreeToggle<cr>
 map <F9> :FufFile<cr>
 map <F10> :call Cscope_load()<cr><cr>

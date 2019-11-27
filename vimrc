@@ -150,6 +150,7 @@ map <F9> :FufFile<cr>
 map <F10> :call Cscope_load()<cr><cr>
 map <F11> :vert scs find s <C-R>=expand("<cword>")<CR><CR>
 map <F12> :cs find s <C-R>=expand("<cword>")<CR><CR>
+set cscopequickfix=s- " open symbol search in quickfix window (open quickfix with cwin)
 
 " To do the first type of search, hit 'CTRL-\', followed by one of the
 " cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope

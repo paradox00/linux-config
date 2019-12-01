@@ -131,6 +131,7 @@ if has("autocmd")
 
   " enable nginx filetype
   au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif
+  autocmd FileType nginx setlocal commentstring="#\ %s"
 
   " gnuplot comment
   autocmd FileType gnuplot setlocal commentstring=#\ %s
@@ -198,7 +199,7 @@ cnoreabbrev ag Ack
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
 function! AppendModeline()
-  let l:modeline = printf(" vim: set filetype=%s  ts=%d sw=%d tw=%d %set :",
+  let l:modeline = printf(" vim: ft=%s ts=%d sw=%d tw=%d %set :",
         \ &filetype,
         \ &tabstop, &shiftwidth, &textwidth, &expandtab ? '' : 'no')
   let l:modeline = substitute(&commentstring, "%s", l:modeline, "")

@@ -110,6 +110,11 @@ call vundle#end()
 "enable man plugin
 runtime! ftplugin/man.vim
 
+func! Enable_spell()
+    setlocal spell
+    setlocal complete+=kspell
+endfunc
+
 if has("autocmd")
   autocmd FileType c setlocal cindent expandtab sw=4 ts=4
   autocmd FileType cpp setlocal cindent expandtab sw=4 ts=4
@@ -135,6 +140,10 @@ if has("autocmd")
 
   " gnuplot comment
   autocmd FileType gnuplot setlocal commentstring=#\ %s
+
+  "spell checks
+  autocmd FileType gitcommit        call Enable_spell()
+  "autocmd BufNewFile,BufRead *.txt  call Enable_spell()
 endif
 
 filetype plugin indent on

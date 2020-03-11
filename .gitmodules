@@ -96,3 +96,11 @@
 	path = tmux/plugins/tmux-better-mouse-mode
 	url = https://github.com/nhdaly/tmux-better-mouse-mode
 	branch = master
+[submodule "vim/bundle/vim-mark"]
+	path = vim/bundle/vim-mark
+	url = https://github.com/inkarkat/vim-mark.git
+	branch = master
+[submodule "vim/bundle/vim-ingo-library"]
+	path = vim/bundle/vim-ingo-library
+	url = https://github.com/inkarkat/vim-info-library.git
+	branch = master

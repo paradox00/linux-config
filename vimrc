@@ -105,6 +105,32 @@ Plugin 'garbas/vim-snipmate'
 
 Plugin 'gnuplot.vim'
 
+" vim-mark
+"<Leader>m               Mark the word under the cursor, similar to the star
+"                        command. The next free highlight group is used.
+"                        If already on a mark: Clear the mark, like
+"                        <Leader>n.
+"{Visual}<Leader>m       Mark or unmark the visual selection.
+"{N}<Leader>m            With {N}, mark the word under the cursor with the
+"                        named highlight group {N}. When that group is not
+"                        empty, the word is added as an alternative match, so
+"                        you can highlight multiple words with the same color.
+"                        When the word is already contained in the list of
+"                        alternatives, it is removed.
+"
+"                        When {N} is greater than the number of defined mark
+"                        groups, a summary of marks is printed. Active mark
+"                        groups are prefixed with "*" (or "M*" when there are
+"                        M pattern alternatives), the default next group with
+"                        ">", the last used search with "/" (like :Marks
+"                        does). Input the mark group, accept the default with
+"                        <CR>, or abort with <Esc> or any other key.
+"                        This way, when unsure about which number represents
+"                        which color, just use 99<Leader>n and pick the color
+"                        interactively!
+Plugin 'inkarkat/vim-ingo-library'
+Plugin 'inkarkat/vim-mark' 
+
 call vundle#end() 
 
 "enable man plugin
@@ -123,6 +149,17 @@ if has("autocmd")
   autocmd FileType c,cpp normal zR
 
   autocmd BufNewFile,BufRead *.h    setfiletype c
+
+  au BufRead,BufNewFile hubble_* setfiletype hubble
+  au BufRead,BufNewFile *.hubble setfiletype hubble
+  au FileType hubble highlight Timestamp guibg=Blue ctermfg=Blue
+  au FileType hubble syn match Timestamp "^\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2}.\d\{9}"
+  au FileType hubble highlight Thread guibg=Yellow ctermfg=Yellow
+  au FileType hubble syn match Thread "(P\d\{5}:E\d\{3}:S\d\{3}:F[0-9,a-f]\{6,8})"
+  au FileType hubble highlight Severity guibg=Red ctermfg=Red
+  au Filetype hubble syn match Severity "{.\{-}:.\{-}:.\{-}}"
+  au FileType hubble highlight Source guibg=Green ctermfg=Green
+  au Filetype hubble syn match Source "\[.\{-}:.\{-}:.\{-}\]"
 
   au BufRead,BufNewFile trc.* setfiletype siotrace
   au FileType siotrace highlight Timestamp guibg=Blue ctermfg=Blue

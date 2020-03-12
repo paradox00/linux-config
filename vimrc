@@ -137,6 +137,10 @@ call vundle#end()
 runtime! ftplugin/man.vim
 
 func! Enable_spell()
+    " zg - add word under cursor as a good word
+    " zw - add word as bad word
+    " zug
+    " zuw - undo good/wrong word 
     setlocal spell
     setlocal complete+=kspell
 endfunc

@@ -27,5 +27,6 @@ tags
 tags-ja
 
 vim/swap/
+vim/spell/
 
 tmux/tmux.conf.local

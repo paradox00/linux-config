@@ -194,13 +194,13 @@ func! Cscope_load()
     cs reset
 endfunc
 
-
 map <F5> :make <cr>
 map <F8> :NERDTreeToggle<cr>
 map <F9> :FufFile<cr>
 map <F10> :call Cscope_load()<cr><cr>
 map <F11> :vert scs find s <C-R>=expand("<cword>")<CR><CR>
 map <F12> :cs find s <C-R>=expand("<cword>")<CR><CR>
+map <leader><C-]> :GtagsCursor<CR>
 
 " To do the first type of search, hit 'CTRL-\', followed by one of the
 " cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
@@ -297,6 +297,9 @@ function! s:LinuxHighlighting()
     autocmd InsertEnter * match LinuxError /\s\+\%#\@<!$/
     autocmd InsertLeave * match LinuxError /\s\+$/
 endfunction
+
+"enable auto support for gtags
+let GtagsCscope_Auto_Load = 1
 
 " augroup linuxsty
 " 	autocmd!

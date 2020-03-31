@@ -299,7 +299,9 @@ function! s:LinuxHighlighting()
 endfunction
 
 "enable auto support for gtags
-let GtagsCscope_Auto_Load = 1
+if filereadable("GTAGS")
+    let GtagsCscope_Auto_Load = 1
+endif
 
 " augroup linuxsty
 " 	autocmd!

@@ -14,6 +14,12 @@
 [status]
     submoduleSummary = true
 
+[ui]
+    color = auto
+
+[help]
+    autocorrect = 1
+
 [alias]
     # show one log with graph
     cslog=log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative

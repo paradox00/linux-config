@@ -157,13 +157,14 @@ if has("autocmd")
   au BufRead,BufNewFile hubble_* setfiletype hubble
   au BufRead,BufNewFile *.hubble setfiletype hubble
   au FileType hubble highlight Timestamp guibg=Blue ctermfg=Blue
-  au FileType hubble syn match Timestamp "^\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2}.\d\{9}"
+  au FileType hubble syn match Timestamp "\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2}.\d\{9}"
   au FileType hubble highlight Thread guibg=Yellow ctermfg=Yellow
   au FileType hubble syn match Thread "(P\d\{5}:E\d\{3}:S\d\{3}:F[0-9,a-f]\{6,8})"
   au FileType hubble highlight Severity guibg=Red ctermfg=Red
   au Filetype hubble syn match Severity "{.\{-}:.\{-}:.\{-}}"
   au FileType hubble highlight Source guibg=Green ctermfg=Green
   au Filetype hubble syn match Source "\[.\{-}:.\{-}:.\{-}\]"
+  au Filetype hubble setlocal nonumber
 
   au BufRead,BufNewFile trc.* setfiletype siotrace
   au FileType siotrace highlight Timestamp guibg=Blue ctermfg=Blue

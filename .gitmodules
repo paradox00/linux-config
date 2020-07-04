@@ -104,3 +104,4 @@
 	path = vim/bundle/vim-ingo-library
 	url = https://github.com/inkarkat/vim-info-library.git
 	branch = master
+    ignore = dirty

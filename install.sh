@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -xe
+
 cd "$(dirname "$0")"
 
 git submodule init

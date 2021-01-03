@@ -159,7 +159,8 @@ if has("autocmd")
   au FileType hubble highlight Timestamp guibg=Blue ctermfg=Blue
   au FileType hubble syn match Timestamp "\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2}.\d\{9}"
   au FileType hubble highlight Thread guibg=Yellow ctermfg=Yellow
-  au FileType hubble syn match Thread "(P\d\{5}:E\d\{3}:S\d\{3}:F[0-9,a-f]\{6,8})"
+  au FileType hubble syn match Thread "(P\d\{5,}:E\d\{3}:S\d\{3}:F[0-9,a-f]\{6,8})"
+  au FileType hubble syn match Thread "([0-9,a-f]{8}:P\d\{5,}:E\d\{3}:S\d\{3}:F[0-9,a-f]\{6,8})"
   au FileType hubble highlight Severity guibg=Red ctermfg=Red
   au Filetype hubble syn match Severity "{.\{-}:.\{-}:.\{-}}"
   au FileType hubble highlight Source guibg=Green ctermfg=Green
@@ -191,7 +192,13 @@ endif
 filetype plugin indent on
 
 func! Cscope_load()
-    !cscope-indexer -r .
+    if filereadable("GTAGS")
+        !gtags
+    endif
+
+    if filereadable("cscope.out")
+        !cscope-indexer -r .
+    endif
     cs reset
 endfunc
 
@@ -312,5 +319,14 @@ endif
 " 	autocmd FileType kconfig setlocal ts=8 sw=8 sts=8 noet
 " 	autocmd FileType dts setlocal ts=8 sw=8 sts=8 noet
 " augroup END
+
+" Mac specific:
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname =~ "Darwin"
+    " Do Mac stuff here
+	noremap <Help> <Insert>
+  endif
+endif
 
 " vim: set filetype=vim  ts=4 sw=4 tw=78 et :

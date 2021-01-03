@@ -156,11 +156,13 @@ if has("autocmd")
 
   au BufRead,BufNewFile hubble_* setfiletype hubble
   au BufRead,BufNewFile *.hubble setfiletype hubble
+  au BufRead,BufNewFile panic_fiber_\d setfiletype hubble
+  au BufRead,BufNewFile all_panics setfiletype hubble
   au FileType hubble highlight Timestamp guibg=Blue ctermfg=Blue
   au FileType hubble syn match Timestamp "\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2}.\d\{9}"
   au FileType hubble highlight Thread guibg=Yellow ctermfg=Yellow
   au FileType hubble syn match Thread "(P\d\{5,}:E\d\{3}:S\d\{3}:F[0-9,a-f]\{6,8})"
-  au FileType hubble syn match Thread "([0-9,a-f]{8}:P\d\{5,}:E\d\{3}:S\d\{3}:F[0-9,a-f]\{6,8})"
+  au FileType hubble syn match Thread "([0-9,a-f]\{8}:P\d\{5,}:E\d\{3}:S\d\{3}:F[0-9,a-f]\{6,8})"
   au FileType hubble highlight Severity guibg=Red ctermfg=Red
   au Filetype hubble syn match Severity "{.\{-}:.\{-}:.\{-}}"
   au FileType hubble highlight Source guibg=Green ctermfg=Green
@@ -218,12 +220,6 @@ map <leader><C-]> :GtagsCursor<CR>
 nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-
 " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
 " makes the vim window split vertically, with search result displayed in
 " the new window.

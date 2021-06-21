@@ -104,6 +104,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 
 Plugin 'gnuplot.vim'
+Bundle "lepture/vim-jinja"
 
 " vim-mark
 "<Leader>m               Mark the word under the cursor, similar to the star
@@ -154,21 +155,6 @@ if has("autocmd")
 
   autocmd BufNewFile,BufRead *.h    setfiletype c
 
-  au BufRead,BufNewFile hubble_* setfiletype hubble
-  au BufRead,BufNewFile *.hubble setfiletype hubble
-  au BufRead,BufNewFile panic_fiber_\d setfiletype hubble
-  au BufRead,BufNewFile all_panics setfiletype hubble
-  au FileType hubble highlight Timestamp guibg=Blue ctermfg=Blue
-  au FileType hubble syn match Timestamp "\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2}.\d\{9}"
-  au FileType hubble highlight Thread guibg=Yellow ctermfg=Yellow
-  au FileType hubble syn match Thread "(P\d\{5,}:E\d\{3}:S\d\{3}:F[0-9,a-f]\{6,8})"
-  au FileType hubble syn match Thread "([0-9,a-f]\{8}:P\d\{5,}:E\d\{3}:S\d\{3}:F[0-9,a-f]\{6,8})"
-  au FileType hubble highlight Severity guibg=Red ctermfg=Red
-  au Filetype hubble syn match Severity "{.\{-}:.\{-}:.\{-}}"
-  au FileType hubble highlight Source guibg=Green ctermfg=Green
-  au Filetype hubble syn match Source "\[.\{-}:.\{-}:.\{-}\]"
-  au Filetype hubble setlocal nonumber
-
   au BufRead,BufNewFile trc.* setfiletype siotrace
   au FileType siotrace highlight Timestamp guibg=Blue ctermfg=Blue
   au FileType siotrace syn match Timestamp "^\d\{2}/\d\{2} \d\{2}:\d\{2}:\d\{2}.\d\{6}"
@@ -190,6 +176,10 @@ if has("autocmd")
   autocmd FileType gitcommit        call Enable_spell()
   "autocmd BufNewFile,BufRead *.txt  call Enable_spell()
 endif
+
+" fix diff colors for desert color scheme:
+hi DiffText   cterm=none ctermfg=Black ctermbg=Red gui=none guifg=Black guibg=Red
+hi DiffChange cterm=none ctermfg=Black ctermbg=LightMagenta gui=none guifg=Black guibg=LightMagenta
 
 filetype plugin indent on
 
@@ -325,4 +315,7 @@ if has("unix")
   endif
 endif
 
+if filereadable("~/.vimrc_local")
+    source ~/.vimrc_local
+endif
 " vim: set filetype=vim  ts=4 sw=4 tw=78 et :

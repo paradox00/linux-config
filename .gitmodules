@@ -106,3 +106,7 @@
 	url = https://github.com/inkarkat/vim-ingo-library.git
 	branch = master
     ignore = dirty
+[submodule "vim/bundle/vim-jinja"]
+	path = vim/bundle/vim-jinja
+	url = https://github.com/lepture/vim-jinja.git
+	branch = master

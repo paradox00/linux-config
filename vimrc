@@ -64,6 +64,7 @@ map <Leader>tc :tabclose<cr>
 map <Leader>tm :tabmove<cr>
 map <Leader>tn :tabnext<cr>
 map <Leader>tp :tabprevious<cr> 
+map <Leader>tf :tabfirst<cr> 
 map <C-Tab> <C-w>
 map <Leader>c  :noh<cr>
 set pastetoggle=<Leader>p
@@ -318,4 +319,14 @@ endif
 if filereadable("~/.vimrc_local")
     source ~/.vimrc_local
 endif
+
+" snipmate configuration
+let g:snipMate = { 'snippet_version' : 1 }
+
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
+
 " vim: set filetype=vim  ts=4 sw=4 tw=78 et :

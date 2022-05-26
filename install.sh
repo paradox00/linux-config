@@ -14,7 +14,7 @@ git submodule update --init --recursive
 [[ -f ~/.tmux.conf ]] && mv ~/.tmux.conf ~/.backup/.tmux.conf
 [[ -f ~/.bash.conf ]] && mv ~/.bash.conf ~/.backup/.bash.conf
 [[ -d ~/.bash_addons ]] && mv ~/.bash_addons ~/.backup/.bash
-[[ -d ~/.globalrc ]] && mv ~/.globalrc ~/.backup/.globalrc
+[[ -f ~/.globalrc ]] && mv ~/.globalrc ~/.backup/.globalrc
 
 
 GIT_ROOT=$(git rev-parse --show-toplevel)

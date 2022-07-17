@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 git submodule init
 git submodule update --init --recursive
 
-\mkdir ~/.backup
+\mkdir -p ~/.backup
 [[ -f ~/.vimrc ]] && mv ~/.vimrc ~/.backup/.vimrc
 [[ -d ~/.vim ]] &&  mv ~/.vim ~/.backup/.vim
 [[ -d ~/.tmux ]] && mv ~/.tmux ~/.backup/.tmux

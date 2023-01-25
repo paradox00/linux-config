@@ -49,9 +49,11 @@ if has('unix')
 	set t_Co=256
 endif
 
-colorscheme desert
-highlight PmenuSel ctermfg=1 ctermbg=4
-highlight Pmenu ctermfg=7 ctermbg=4
+if v:version < 900
+    colorscheme desert
+    highlight PmenuSel ctermfg=1 ctermbg=4
+    highlight Pmenu ctermfg=7 ctermbg=4
+endif
 
 " Python configs
 filetype indent plugin on
@@ -95,7 +97,7 @@ Plugin 'ericpruitt/tmux.vim'
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'nginx.vim'
 Plugin 'mileszs/ack.vim'
-Plugin 'godlygeek/tabular'
+" Plugin 'godlygeek/tabular'
 "Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tpope/vim-commentary' " provides gcc, gc command to comment toggle 
 
@@ -132,6 +134,8 @@ Bundle "lepture/vim-jinja"
 "                        interactively!
 Plugin 'inkarkat/vim-ingo-library'
 Plugin 'inkarkat/vim-mark' 
+
+Plugin 'neoclide/coc.nvim'
 
 call vundle#end() 
 

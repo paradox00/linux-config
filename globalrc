@@ -523,6 +523,8 @@ pygments-parser|Pygments plug-in parser:\
 	:langmap=XQuery\:.xqy.xquery.xq.xql.xqm:\
 	:langmap=XSLT\:.xsl.xslt.xpl:\
 	:langmap=Xtend\:.xtend:\
+    :langmap=Yaml\:.yml.yaml:\
+    :gtags_parser=Yaml\:$pygmentslib:\
 	:gtags_parser=ABAP\:$pygmentslib:\
 	:gtags_parser=ANTLR\:$pygmentslib:\
 	:gtags_parser=ActionScript3\:$pygmentslib:\

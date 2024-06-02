@@ -87,7 +87,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'L9'
 Plugin 'fuzzyfinder'
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'tpope/vim-fugitive'
 Plugin 'will133/vim-dirdiff'
@@ -329,8 +329,10 @@ let g:snipMate = { 'snippet_version' : 1 }
 
 if has("mouse_sgr")
     set ttymouse=sgr
-else
-    set ttymouse=xterm2
+else 
+    if !has ('nvim')
+        set ttymouse=xterm2
+    endif
 end
 
 " Switch to last-active tab

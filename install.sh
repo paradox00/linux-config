@@ -15,6 +15,7 @@ git submodule update --init --recursive
 [[ -f ~/.bash.conf ]] && mv ~/.bash.conf ~/.backup/.bash.conf
 [[ -d ~/.bash_addons ]] && mv ~/.bash_addons ~/.backup/.bash
 [[ -f ~/.globalrc ]] && mv ~/.globalrc ~/.backup/.globalrc
+[[ -d ~/.config/nvim ]] && mv ~/.config/nvim ~/.backup/nvim
 
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
@@ -26,6 +27,7 @@ ln -s ${GIT_ROOT}/tmux.conf ~/.tmux.conf
 ln -s ${GIT_ROOT}/bash.conf ~/.bash.conf
 ln -s ${GIT_ROOT}/bash ~/.bash_addons
 ln -s ${GIT_ROOT}/globalrc ~/.globalrc
+ln -s ${GIT_ROOT}/nvim ~/.config/nvim
 
 echo "source ~/.bash.conf" >> ~/.bashrc
 

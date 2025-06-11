@@ -102,3 +102,11 @@
 	path = vim/bundle/vim-jinja
 	url = https://github.com/lepture/vim-jinja.git
 	branch = master
+[submodule "vim/bundle/rust.vim"]
+	path = vim/bundle/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
+	branch = master
+[submodule "vim/bundle/tagbar"]
+	path = vim/bundle/tagbar
+	url = https://github.com/preservim/tagbar.git
+	branch = master

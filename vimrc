@@ -109,6 +109,9 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'gnuplot.vim'
 Bundle "lepture/vim-jinja"
 
+Plugin 'rust-lang/rust.vim'
+Plugin 'preservim/tagbar'
+
 " vim-mark
 "<Leader>m               Mark the word under the cursor, similar to the star
 "                        command. The next free highlight group is used.
@@ -267,10 +270,10 @@ function! LinuxCodingStyle()
 endfunction
 
 function! s:LinuxFormatting()
-    setlocal tabstop=8
-    setlocal shiftwidth=8
-    setlocal softtabstop=8
-    setlocal textwidth=80
+    setlocal tabstop=4
+    setlocal shiftwidth=4
+    setlocal softtabstop=4
+    setlocal textwidth=100
     setlocal noexpandtab
 
     setlocal cindent
@@ -343,5 +346,47 @@ endif
 autocmd! TabLeave * let g:Lasttab_backup = g:Lasttab | let g:Lasttab = tabpagenr()
 autocmd! TabClosed * let g:Lasttab = g:Lasttab_backup
 nmap <Leader>tl :exe "tabn " . g:Lasttab<cr>
+
+" tagbar config, show file outline with F7 
+let g:tagbar_autofocus = 1
+nmap <F7> :TagbarToggle<CR>
+
+" rust support
+let g:rust_use_custom_ctags_defs = 1  " if using rust.vim
+
+let g:tagbar_type_rust = {
+  \ 'ctagsbin' : '/usr/bin/ctags',
+  \ 'ctagstype' : 'rust',
+  \ 'kinds' : [
+      \ 'n:modules',
+      \ 's:structures:1',
+      \ 'i:interfaces',
+      \ 'c:implementations',
+      \ 'f:functions:1',
+      \ 'g:enumerations:1',
+      \ 't:type aliases:1:0',
+      \ 'C:constants:1:0',
+      \ 'M:macros:1',
+      \ 'm:fields:1:0',
+      \ 'e:enum variants:1:0',
+      \ 'P:methods:1',
+  \ ],
+  \ 'sro': '::',
+  \ 'kind2scope' : {
+      \ 'n': 'module',
+      \ 's': 'struct',
+      \ 'i': 'interface',
+      \ 'c': 'implementation',
+      \ 'f': 'function',
+      \ 'g': 'enum',
+      \ 't': 'typedef',
+      \ 'v': 'variable',
+      \ 'M': 'macro',
+      \ 'm': 'field',
+      \ 'e': 'enumerator',
+      \ 'P': 'method',
+  \ },
+\ }
+
 
 " vim: set filetype=vim  ts=4 sw=4 tw=78 et :

@@ -234,10 +234,16 @@ nmap <C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 let g:jedi#use_splits_not_buffers = "right"
 
 " Enable ag command
-if executable('ag')
-    let g:ackprg = 'ag --vimgrep --smart-case'
+
+if executable('rg')
+    let g:ackprg = 'rg --vimgrep --smart-case'
+else 
+    if executable('ag')
+        let g:ackprg = 'ag --vimgrep --smart-case'
+    endif
 endif
 cnoreabbrev ag Ack
+cnoreabbrev rg Ack
 
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 "if exists(":Tabularize")
